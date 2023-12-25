@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body class="container mt-4" style="width: 70%; padding: 30px; border: solid;">
+
+    <div class="alert display-1 text-center" style="border: solid;"><b>NUESTROS PRODUCTOS</b></div>
+
+    <h2 style="text-align: center;"> {{ user.username | upper }}, Bienvenido</h2>
+    <a href="/logout" class="btn btn-info float-end" style="border: solid;">CERRAR SESION</a>
+    <br>
+    <br>
+    {% if productos %}
+
+    <table class="table table-striped table-inverse table-responsive" style="border: solid;">
+        <thead class="thead-inverse">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Marca</th>
+                <th>Talla</th>
+                <th>Color</th>
+                <th>Email Provedor</th>
+                <th>Estado</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for producto in productos %}
+
+            <tr>
+                <td>{{ producto.id }}</td>
+                <td>{{ producto.nombre }}</td>
+                <td>{{ producto.marca }}</td>
+                <td>{{ producto.talla }}</td>
+                <td>{{ producto.color }}</td>
+                <td>{{ producto.email }}</td>
+                <td>{{ producto.estado }}</td>
+                <td><a href="/actualizarProducto/{{producto.id}}" class="btn btn-success btn-sm"><i class="bi bi-pencil"></i></a></td>
+                <td><a href="/eliminarProducto/{{producto.id}}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% else %}
+
+    <div class="alert alert-info" role="alert">
+        <strong>No se encontraron productos</strong>
+    </div>
+
+    {% endif %}
+    <a href="../agregarProducto/" class="btn btn-info float-end" style="border: solid;">AGREGAR PRODUCTO</a>
+    <a href="../usuarios/" class="btn btn-info float-end" style="border: solid;">CLIENTE</a>
+    
+</body>
+</html>
